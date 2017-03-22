@@ -72,7 +72,7 @@ class Lock(object):
         f_handler = open(self.lock_file, 'r')
         raw_data = f_handler.read()
         json_data = json.loads(raw_data)
-        for key, value in json_data.iteritems():
+        for key, value in json_data.items():
             logging.info('%-10s: %s' % (key, value))
         f_handler.close()
 
