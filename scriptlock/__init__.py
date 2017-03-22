@@ -88,4 +88,3 @@ class Lock(object):
 
         except Exception as exception:
             logging.exception(exception)
-            sys.exit(-1)
