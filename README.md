@@ -12,14 +12,23 @@ Example
 
 ```python
 import time
+import atexit
 
 from scriptlock import Lock
 
 lock = Lock()
+atexit.register(lock.cleanup)  # Needed to clean the lock correctly
+
 time.sleep(100)
 ```
 
 Launch another one and see what happend
+
+## Workaround
+
+The use of atexit is necessary to correctly clean the lock.
+We tried to use the __del__ module but it caused issues with the
+logger.
 
 ## Tests
 

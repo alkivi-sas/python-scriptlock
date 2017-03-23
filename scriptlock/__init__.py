@@ -76,7 +76,7 @@ class Lock(object):
             logging.info('%-10s: %s' % (key, value))
         f_handler.close()
 
-    def __del__(self):
+    def cleanup(self):
         if not self.initialized:
             return
 
@@ -85,6 +85,7 @@ class Lock(object):
             if os.path.isfile(self.lock_file):
                 os.unlink(self.lock_file)
                 logging.debug("Lockfile %s released" % (self.lock_file))
+            self.initialized = False
 
         except Exception as exception:
             logging.exception(exception)
